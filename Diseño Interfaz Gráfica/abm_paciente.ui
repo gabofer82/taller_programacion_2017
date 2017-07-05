@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>dlg_abm_paciente</class>
+ <widget class="QDialog" name="dlg_abm_paciente">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>624</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Administrar Paciente</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="4" column="0">
+      <widget class="QLabel" name="lbl_telefono">
+       <property name="text">
+        <string>Teléfono</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="2">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <spacer name="hspc_activo_izquierda">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="chkbox_activo">
+         <property name="text">
+          <string>Activo</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="lbl_domicilio">
+       <property name="text">
+        <string>Domicilio</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <spacer name="hspc_nombres_derecha">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="txt_domicilio"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="lbl_apellidos">
+       <property name="text">
+        <string>Apellidos</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="txt_nombres"/>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="txt_numero_documento"/>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="lbl_ciudad">
+       <property name="text">
+        <string>Ciudad</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="txt_apellidos"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="lbl_numero_documento">
+       <property name="text">
+        <string>Número de documento</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="txt_telefono"/>
+     </item>
+     <item row="5" column="1">
+      <widget class="QComboBox" name="cbox_ciudad"/>
+     </item>
+     <item row="1" column="2">
+      <spacer name="hspc_apellidos_derecha">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="lbl_nombres">
+       <property name="text">
+        <string>Nombres</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <layout class="QHBoxLayout" name="hlyt_tipos_documentos">
+       <item>
+        <widget class="QRadioButton" name="rbtn_cedula">
+         <property name="text">
+          <string>C&amp;édula</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="rbtn_pasaporte">
+         <property name="text">
+          <string>Pasaporte</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="5" column="2">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <spacer name="hspc_penalizado_izquierda">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="chkbox_penalizado">
+         <property name="text">
+          <string>Penalizado</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QPushButton" name="btn_baja">
+       <property name="text">
+        <string>Dar Baja</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_actualizar">
+       <property name="text">
+        <string>Actualizar</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_agregar">
+       <property name="text">
+        <string>Agregar</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTableView" name="table_pacientes"/>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="btnbox_ok_cancel">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+  <zorder>btnbox_ok_cancel</zorder>
+  <zorder>table_pacientes</zorder>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>btnbox_ok_cancel</sender>
+   <signal>accepted()</signal>
+   <receiver>dlg_abm_paciente</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnbox_ok_cancel</sender>
+   <signal>rejected()</signal>
+   <receiver>dlg_abm_paciente</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
