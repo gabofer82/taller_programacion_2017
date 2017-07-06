@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>dlg_reserva</class>
+ <widget class="QDialog" name="dlg_reserva">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>523</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Reserva de Exámen</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_5">
+   <item>
+    <layout class="QHBoxLayout" name="hlyt_columnas">
+     <item>
+      <layout class="QVBoxLayout" name="vlyt_paciente">
+       <item>
+        <layout class="QGridLayout" name="grid_lyt_paciente_arriba">
+         <item row="0" column="0">
+          <widget class="QLabel" name="lbl_institucion_referente">
+           <property name="text">
+            <string>Institución Referente</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="cbox_institucion_referente"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="lbl_examen">
+           <property name="text">
+            <string>Exámen</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QComboBox" name="cbox_examen"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="QCheckBox" name="chkbox_conformado">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
+           <property name="text">
+            <string>Conformado</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="vlyt_datos_paciente">
+         <item>
+          <widget class="QLabel" name="lbl_activo">
+           <property name="font">
+            <font>
+             <italic>true</italic>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: green</string>
+           </property>
+           <property name="text">
+            <string>Activo</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="lbl_nombre_completo">
+           <property name="text">
+            <string>Nombre Completo</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="lbl_tipo_nro_documento">
+           <property name="text">
+            <string>Tipo y numero documento</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="lbl_penalizado">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: red</string>
+           </property>
+           <property name="text">
+            <string>Penalizado</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTableView" name="tblview_pacientes"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="hlyt_btn_nuevo_paciente">
+         <item>
+          <spacer name="hspc_nuevo_paciente_izquierda">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btn_nuevo_paciente">
+           <property name="text">
+            <string>Nuevo Paciente</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="vlyt_fecha">
+       <item>
+        <layout class="QVBoxLayout" name="vlyt_calendario">
+         <item>
+          <widget class="QLabel" name="lbl_fecha_hora_seleccionada">
+           <property name="text">
+            <string>Fecha y hora seleccionada</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCalendarWidget" name="cal_fecha"/>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="hlyt_hora">
+           <item>
+            <widget class="QLabel" name="lbl_hora">
+             <property name="text">
+              <string>Hora</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spin_hora">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>24</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spin_minutos">
+             <property name="maximum">
+              <number>59</number>
+             </property>
+             <property name="singleStep">
+              <number>15</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="hspc_spin_derecha">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="vspc_hora_abajo">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="btnbox_ok_cancel">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>btnbox_ok_cancel</sender>
+   <signal>accepted()</signal>
+   <receiver>dlg_reserva</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnbox_ok_cancel</sender>
+   <signal>rejected()</signal>
+   <receiver>dlg_reserva</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

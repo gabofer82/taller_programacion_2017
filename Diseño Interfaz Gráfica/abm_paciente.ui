@@ -43,8 +43,14 @@
        </item>
        <item>
         <widget class="QCheckBox" name="chkbox_activo">
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
          <property name="text">
           <string>Activo</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -136,12 +142,15 @@
          <property name="text">
           <string>C&amp;édula</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
         <widget class="QRadioButton" name="rbtn_pasaporte">
          <property name="text">
-          <string>Pasaporte</string>
+          <string>Pasapor&amp;te</string>
          </property>
         </widget>
        </item>
@@ -164,6 +173,9 @@
        </item>
        <item>
         <widget class="QCheckBox" name="chkbox_penalizado">
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
          <property name="text">
           <string>Penalizado</string>
          </property>
@@ -177,6 +189,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
       <widget class="QPushButton" name="btn_baja">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Dar Baja</string>
        </property>
@@ -184,6 +199,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="btn_actualizar">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Actualizar</string>
        </property>
