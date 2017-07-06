@@ -20,6 +20,19 @@
       <layout class="QVBoxLayout" name="vlyt_paciente">
        <item>
         <layout class="QGridLayout" name="grid_lyt_paciente_arriba">
+         <item row="3" column="1">
+          <widget class="QComboBox" name="cbox_examen"/>
+         </item>
+         <item row="2" column="1">
+          <widget class="QCheckBox" name="chkbox_conformado">
+           <property name="layoutDirection">
+            <enum>Qt::RightToLeft</enum>
+           </property>
+           <property name="text">
+            <string>Conformado</string>
+           </property>
+          </widget>
+         </item>
          <item row="0" column="0">
           <widget class="QLabel" name="lbl_institucion_referente">
            <property name="text">
@@ -30,23 +43,17 @@
          <item row="0" column="1">
           <widget class="QComboBox" name="cbox_institucion_referente"/>
          </item>
-         <item row="2" column="0">
+         <item row="3" column="0">
           <widget class="QLabel" name="lbl_examen">
            <property name="text">
             <string>Exámen</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
-          <widget class="QComboBox" name="cbox_examen"/>
-         </item>
          <item row="1" column="1">
-          <widget class="QCheckBox" name="chkbox_conformado">
-           <property name="layoutDirection">
-            <enum>Qt::RightToLeft</enum>
-           </property>
+          <widget class="QPushButton" name="pushButton">
            <property name="text">
-            <string>Conformado</string>
+            <string>Agregar Institución</string>
            </property>
           </widget>
          </item>
@@ -122,7 +129,7 @@
          <item>
           <widget class="QPushButton" name="btn_nuevo_paciente">
            <property name="text">
-            <string>Nuevo Paciente</string>
+            <string>Agregar Nuevo Paciente</string>
            </property>
           </widget>
          </item>
