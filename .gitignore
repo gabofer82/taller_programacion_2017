@@ -105,3 +105,4 @@ ENV/
 
 # Archivos Temporales 
 *~
+.~lock.*#
