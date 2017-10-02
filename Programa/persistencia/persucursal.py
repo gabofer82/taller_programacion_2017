@@ -15,7 +15,7 @@ class PerSucursal(BaseDeDatos):
             sql = 'SELECT * FROM sucursales WHERE id=?'
             fila = self.obtener(sql, id_)
             return Creador.sucursal(id_=fila[0], domicilio=fila[1],
-                                    ubicacionGeoId=fila[2])
+                                    ubicacion_geo_id=fila[2])
         else:
             print 'El parámetro debe ser mayor o igual a 0.'
             return None
@@ -45,7 +45,7 @@ class PerSucursal(BaseDeDatos):
         :return: object
         """
         sql = 'INSERT INTO sucursales VALUES (null, ?, ?)'
-        id_ = self.salvar(sql, (obj.domicilio, obj.ubigeo_obj.id_,))
+        id_ = self.salvar(sql, (obj.domicilio, obj.obj_ubigeo.id_,))
         obj.id_ = id_
         return obj
 
@@ -59,7 +59,7 @@ class PerSucursal(BaseDeDatos):
         """
         sql = 'UPDATE sucursales SET domicilio = ?, ubicacionGeoId = ? WHERE \
               id = ?'
-        return self.actualizar(sql, (obj.domicilio, obj.ubigeo_obj.id_,
+        return self.actualizar(sql, (obj.domicilio, obj.obj_ubigeo.id_,
                                     obj.id_))
 
     def baja_objeto(self, obj):

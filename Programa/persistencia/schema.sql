@@ -39,12 +39,14 @@ CREATE TABLE "persona" (
 CREATE TABLE "empleados" (
     "id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     "password" TEXT NOT NULL,
+    "personaId" INTEGER NOT NULL,
     "sucursalId" INTEGER NOT NULL,
     "tipo" TEXT NOT NULL CHECK(tipo = 'administrativo' or tipo = 'laboratorista'),
     "baja" INTEGER NOT NULL DEFAULT (0)
 );
 CREATE TABLE "pacientes" (
     "id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    "personaId" INTEGER NOT NULL,
     "activo" INTEGER NOT NULL DEFAULT (1),
     "penalizado" INTEGER NOT NULL DEFAULT (0),
     "fichaPacienteId" INTEGER NOT NULL,

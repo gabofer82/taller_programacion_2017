@@ -1,3 +1,4 @@
+from negocio.api import Creador
 from .basededatos import BaseDeDatos
 
 
@@ -9,7 +10,16 @@ class PerPaciente(BaseDeDatos):
         :param id_: int >= 0
         :return: object
         """
-        pass
+        if id_ >= 0:
+            id_ = (id_,)
+            sql = 'SELECT * FROM pacientes WHERE id=?'
+            fila = self.obtener(sql, id_)
+            return Creador.paciente(id_=fila[0], personaId=fila[1],
+                                    activo=fila[2], penalizado=fila[3],
+                                    ficha_paciente_id=fila[4])
+        else:
+            print 'El parámetro debe ser mayor o igual a 0.'
+            return None
 
     def obtener_listado(self, **kwargs):
         """
@@ -17,24 +27,42 @@ class PerPaciente(BaseDeDatos):
         :param kwargs: dict 
         :return: dict
         """
-        pass
+        if 'pagina' in kwargs:
+            total_filas = self.contar_filas('pacientes')
+            offset = kwargs['pagina'] * 10  #resultados por pagina
+            if offset < total_filas:  # TODO: ver aca el asunto de paginacion
+                sql = 'SELECT * FROM sucursales LIMIT(10) OFFSET(?)'
+                data = (offset,)
+                lista_de_filas = self.obtener(sql, data, True)
+                return lista_de_filas
+            return None
+        else:
+            return None
 
     def agregar_objeto(self, obj):
         """
-        Convierte un objeto para ser insertado en la base de datos.
+        Prepara los datos de un objeto para ser insertado en la base de datos.
         :param obj: object
         :return: object
         """
-        pass
+        sql = 'INSERT INTO pacientes VALUES (null, ?, ?, ?, ?)'
+        id_ = self.salvar(sql, (obj.activo, obj.persona.id_, obj.penalizado,
+                                obj.obj_ficha_paciente.id_))
+        obj.id_ = id_
+        return obj
 
     def actualizar_objeto(self, obj):
         """
-        Convierte un objeto para actualizar su registro correlativo en la base
-        de daots.
+        Prepara los datos de un objeto para actualizar su registro correlativo 
+        en la base de datos.
         :param obj: object
-        :return: object
+        :return: bool
         """
-        pass
+        sql = 'UPDATE pacientes SET personaId = ?, activo = ?, penalizado = ?,\
+               fichaPacienteId = ? WHERE id = ?'
+        return self.actualizar(sql, (obj.persona.id_, obj.activo,
+                                     obj.penalizado,
+                                     obj.obj_ficha_paciente.id_, obj.id_))
 
     def baja_objeto(self, obj):
         """
@@ -43,4 +71,5 @@ class PerPaciente(BaseDeDatos):
         :param obj: object 
         :return: bool
         """
-        pass
+        sql = 'UPDATE paciente SET baja = ? WHERE id = ?'
+        return self.actualizar(sql, (1, obj.id_))
