@@ -15,7 +15,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_5">
    <item>
-    <layout class="QHBoxLayout" name="hlyt_columnas">
+    <layout class="QHBoxLayout" name="hlyt_columnas_formulario">
      <item>
       <layout class="QVBoxLayout" name="vlyt_paciente">
        <item>
@@ -51,7 +51,7 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="btn_agregar_institucion">
            <property name="text">
             <string>Agregar Institución</string>
            </property>
@@ -107,6 +107,19 @@
           </widget>
          </item>
         </layout>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="btn_buscar">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="placeholderText">
+          <string>Buscar...</string>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QTableView" name="tblview_pacientes"/>

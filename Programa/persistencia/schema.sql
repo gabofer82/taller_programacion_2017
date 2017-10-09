@@ -79,6 +79,9 @@ CREATE TABLE "analisis" (
 CREATE TABLE "instituciones_medicas" (
     "id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     "nombre" TEXT NOT NULL,
+    "domicilio" TEXT,
+    "telefonoId" INTEGER,
+    "ubicacionGeoId" INTEGER,
     "baja" INTEGER NOT NULL DEFAULT (0)
 );
 CREATE TABLE "tipos_de_analisis" (

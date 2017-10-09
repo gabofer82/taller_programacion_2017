@@ -11,14 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Administrar Paciente</string>
+   <string>Administrar Pacientes</string>
   </property>
   <property name="modal">
    <bool>true</bool>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QGridLayout" name="gridLayout">
+    <layout class="QGridLayout" name="glyt_datos">
      <item row="1" column="2">
       <spacer name="hspc_apellidos_derecha">
        <property name="orientation">
@@ -32,15 +32,8 @@
        </property>
       </spacer>
      </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="lbl_telefono">
-       <property name="text">
-        <string>Teléfono</string>
-       </property>
-      </widget>
-     </item>
      <item row="4" column="2">
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="hlyt_activo">
        <item>
         <spacer name="hspc_activo_izquierda">
          <property name="orientation">
@@ -69,13 +62,6 @@
        </item>
       </layout>
      </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="lbl_domicilio">
-       <property name="text">
-        <string>Domicilio</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="2">
       <spacer name="hspc_nombres_derecha">
        <property name="orientation">
@@ -88,9 +74,6 @@
         </size>
        </property>
       </spacer>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="txt_domicilio"/>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="lbl_apellidos">
@@ -121,9 +104,6 @@
         <string>Número de documento</string>
        </property>
       </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLineEdit" name="txt_telefono"/>
      </item>
      <item row="5" column="1">
       <widget class="QComboBox" name="cbox_ciudad"/>
@@ -157,7 +137,7 @@
       </layout>
      </item>
      <item row="5" column="2">
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <layout class="QHBoxLayout" name="hlyt_btn_penalizado">
        <item>
         <spacer name="hspc_penalizado_izquierda">
          <property name="orientation">
@@ -183,10 +163,54 @@
        </item>
       </layout>
      </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="txt_domicilio"/>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="lbl_domicilio">
+       <property name="text">
+        <string>Domicilio</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="lbl_telefono">
+       <property name="text">
+        <string>Teléfono</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <layout class="QHBoxLayout" name="hlyt_btn_agregar_telefono">
+       <item>
+        <widget class="QLineEdit" name="txt_telefono"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_agregar_telefono">
+         <property name="text">
+          <string>+</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
+    <layout class="QHBoxLayout" name="hlyt_botones_control">
+     <item>
+      <spacer name="hspc_izquierda_botones">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
      <item>
       <widget class="QPushButton" name="btn_baja">
        <property name="enabled">
@@ -209,12 +233,35 @@
      </item>
      <item>
       <widget class="QPushButton" name="btn_agregar">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Agregar</string>
        </property>
       </widget>
      </item>
+     <item>
+      <spacer name="hspc_derecha_botones">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="lbl_visualizar_ficha">
+     <property name="text">
+      <string>Doble click para visualizar ficha</string>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QTableView" name="table_pacientes"/>
@@ -232,6 +279,7 @@
   </layout>
   <zorder>btnbox_ok_cancel</zorder>
   <zorder>table_pacientes</zorder>
+  <zorder>lbl_visualizar_ficha</zorder>
  </widget>
  <resources/>
  <connections>
