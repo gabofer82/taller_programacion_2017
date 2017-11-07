@@ -1,4 +1,4 @@
-from negocio.api import Creador
+# -*- coding: utf-8 -*-
 from .basededatos import BaseDeDatos
 
 
@@ -14,10 +14,7 @@ class PerPersona(BaseDeDatos):
             id_ = (id_,)
             sql = 'SELECT * FROM persona WHERE id=?'
             fila = self.obtener(sql, id_)
-            return Creador.paciente(id_=fila[0], nombres=fila[1],
-                                    apellidos=fila[2], domicilio=fila[3],
-                                    documentoId=fila[5],
-                                    ubicacionGeoId=fila[6], baja=fila[7])
+            return fila
         else:
             print 'El parámetro debe ser mayor o igual a 0.'
             return None
@@ -44,14 +41,13 @@ class PerPersona(BaseDeDatos):
         """
         Prepara los datos de un objeto para ser insertado en la base de datos.
         :param obj: object
-        :return: object
+        :return: int
         """
         sql = 'INSERT INTO persona VALUES (null, ?, ?, ?, ?, ?, ?)'
-        id_ = self.salvar(sql, (obj.nombres, obj.apellidos, obj.domicilio,
-                                obj.obj_documento.id_,
-                                obj.obj_ubicacion_geo.id_, obj.baja))
-        obj.id_ = id_
-        return obj
+        pk = self.salvar(sql, (obj.nombres, obj.apellidos, obj.domicilio,
+                                obj.obj_documento.pk,
+                                obj.obj_ubicacion_geo.pk, obj.baja))
+        return pk
 
     def actualizar_objeto(self, obj):
         """
@@ -60,11 +56,12 @@ class PerPersona(BaseDeDatos):
         :param obj: object
         :return: bool
         """
-        sql = 'UPDATE pacientes SET nombres = ?, apellidos = ?, domicilio = ?,\
+        sql = 'UPDATE persona SET nombres = ?, apellidos = ?, domicilio = ?,\
                documentoId = ?, ubicacionGeoId = ?, baja = ? WHERE id = ?'
         return self.actualizar(sql, (obj.nombres, obj.apellidos, obj.domicilio,
-                                     obj.obj_documento.id_,
-                                     obj.obj_ubicacion_geo.id_, obj.baja))
+                                     obj.obj_documento.pk,
+                                     obj.obj_ubicacion_geo.pk, obj.baja,
+                                     obj.pk_persona))
 
     def baja_objeto(self, obj):
         """
@@ -74,4 +71,4 @@ class PerPersona(BaseDeDatos):
         :return: bool
         """
         sql = 'UPDATE persona SET baja = ? WHERE id = ?'
-        return self.actualizar(sql, (1, obj.id_))
+        return self.actualizar(sql, (1, obj.pk_persona))

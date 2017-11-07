@@ -1,5 +1,6 @@
-from negocio.api import Creador
+# -*- coding: utf-8 -*-
 from .basededatos import BaseDeDatos
+from .perpersona import PerPersona
 
 
 class PerPaciente(BaseDeDatos):
@@ -14,9 +15,7 @@ class PerPaciente(BaseDeDatos):
             id_ = (id_,)
             sql = 'SELECT * FROM pacientes WHERE id=?'
             fila = self.obtener(sql, id_)
-            return Creador.paciente(id_=fila[0], personaId=fila[1],
-                                    activo=fila[2], penalizado=fila[3],
-                                    ficha_paciente_id=fila[4])
+            return fila
         else:
             print 'El parámetro debe ser mayor o igual a 0.'
             return None
@@ -30,26 +29,31 @@ class PerPaciente(BaseDeDatos):
         if 'pagina' in kwargs:
             total_filas = self.contar_filas('pacientes')
             offset = kwargs['pagina'] * 10  #resultados por pagina
+            dataset = None
             if offset < total_filas:  # TODO: ver aca el asunto de paginacion
-                sql = 'SELECT * FROM sucursales LIMIT(10) OFFSET(?)'
+                sql = 'SELECT * FROM pacientes LIMIT(10) OFFSET(?) WHERE ' \
+                      'baja=0'
                 data = (offset,)
-                lista_de_filas = self.obtener(sql, data, True)
-                return lista_de_filas
-            return None
+                dataset = self.obtener(sql, data, True)
+            else:
+                sql = 'SELECT * FROM pacientes WHERE baja=0'
+                dataset = self.obtener(sql, lista=True)
+
+            return dataset
         else:
-            return None
+            return []
 
     def agregar_objeto(self, obj):
         """
         Prepara los datos de un objeto para ser insertado en la base de datos.
         :param obj: object
-        :return: object
+        :return: int
         """
-        sql = 'INSERT INTO pacientes VALUES (null, ?, ?, ?, ?)'
-        id_ = self.salvar(sql, (obj.activo, obj.persona.id_, obj.penalizado,
-                                obj.obj_ficha_paciente.id_))
-        obj.id_ = id_
-        return obj
+        # obj.pk_persona = PerPersona().agregar_objeto(obj)
+        sql = 'INSERT INTO pacientes VALUES (null, ?, ?, ?, ?, ?)'
+        pk = self.salvar(sql, (obj.pk_persona, obj.activo, obj.penalizado,
+                         1, obj.baja))  # obj.obj_ficha_paciente.pk
+        return pk
 
     def actualizar_objeto(self, obj):
         """
@@ -60,9 +64,10 @@ class PerPaciente(BaseDeDatos):
         """
         sql = 'UPDATE pacientes SET personaId = ?, activo = ?, penalizado = ?,\
                fichaPacienteId = ? WHERE id = ?'
-        return self.actualizar(sql, (obj.persona.id_, obj.activo,
+        return self.actualizar(sql, (obj.pk_persona, obj.activo,
                                      obj.penalizado,
-                                     obj.obj_ficha_paciente.id_, obj.id_))
+                                     1, obj.pk))
+        # TODO: arreglar ficha de paciente: hardcoding
 
     def baja_objeto(self, obj):
         """
@@ -71,5 +76,5 @@ class PerPaciente(BaseDeDatos):
         :param obj: object 
         :return: bool
         """
-        sql = 'UPDATE paciente SET baja = ? WHERE id = ?'
-        return self.actualizar(sql, (1, obj.id_))
+        sql = 'UPDATE pacientes SET baja = ? WHERE id = ?'
+        return self.actualizar(sql, (1, obj.pk))

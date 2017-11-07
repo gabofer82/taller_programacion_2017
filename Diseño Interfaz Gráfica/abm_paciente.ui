@@ -16,9 +16,42 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
     <layout class="QGridLayout" name="glyt_datos">
+     <item row="0" column="0">
+      <widget class="QLabel" name="lbl_nombres">
+       <property name="text">
+        <string> Nombres *</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="txt_nombres"/>
+     </item>
+     <item row="0" column="2">
+      <spacer name="hspc_nombres_derecha">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="lbl_apellidos">
+       <property name="text">
+        <string>Apellidos *</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="txt_apellidos"/>
+     </item>
      <item row="1" column="2">
       <spacer name="hspc_apellidos_derecha">
        <property name="orientation">
@@ -31,6 +64,72 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="lbl_numero_documento">
+       <property name="text">
+        <string>Número de documento *</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="txt_numero_documento"/>
+     </item>
+     <item row="2" column="2">
+      <layout class="QHBoxLayout" name="hlyt_tipos_documentos">
+       <item>
+        <widget class="QRadioButton" name="rbtn_cedula">
+         <property name="text">
+          <string>C&amp;édula</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="rbtn_pasaporte">
+         <property name="text">
+          <string>Pasapor&amp;te</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="lbl_telefono">
+       <property name="text">
+        <string>Teléfono * (1)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <layout class="QVBoxLayout" name="vlyt_contenedor_telefonos">
+       <item>
+        <layout class="QHBoxLayout" name="hlyt_telefono">
+         <item>
+          <widget class="QLineEdit" name="txt_telefono"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btn_agregar_telefono">
+           <property name="text">
+            <string>+</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="lbl_domicilio">
+       <property name="text">
+        <string>Domicilio</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="txt_domicilio"/>
      </item>
      <item row="4" column="2">
       <layout class="QHBoxLayout" name="hlyt_activo">
@@ -62,79 +161,15 @@
        </item>
       </layout>
      </item>
-     <item row="0" column="2">
-      <spacer name="hspc_nombres_derecha">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="lbl_apellidos">
-       <property name="text">
-        <string>Apellidos</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="txt_nombres"/>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="txt_numero_documento"/>
-     </item>
      <item row="5" column="0">
       <widget class="QLabel" name="lbl_ciudad">
        <property name="text">
-        <string>Ciudad</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="txt_apellidos"/>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="lbl_numero_documento">
-       <property name="text">
-        <string>Número de documento</string>
+        <string>Ciudad *</string>
        </property>
       </widget>
      </item>
      <item row="5" column="1">
       <widget class="QComboBox" name="cbox_ciudad"/>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="lbl_nombres">
-       <property name="text">
-        <string>Nombres</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="2">
-      <layout class="QHBoxLayout" name="hlyt_tipos_documentos">
-       <item>
-        <widget class="QRadioButton" name="rbtn_cedula">
-         <property name="text">
-          <string>C&amp;édula</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="rbtn_pasaporte">
-         <property name="text">
-          <string>Pasapor&amp;te</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
      </item>
      <item row="5" column="2">
       <layout class="QHBoxLayout" name="hlyt_btn_penalizado">
@@ -163,37 +198,6 @@
        </item>
       </layout>
      </item>
-     <item row="4" column="1">
-      <widget class="QLineEdit" name="txt_domicilio"/>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="lbl_domicilio">
-       <property name="text">
-        <string>Domicilio</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="lbl_telefono">
-       <property name="text">
-        <string>Teléfono</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <layout class="QHBoxLayout" name="hlyt_btn_agregar_telefono">
-       <item>
-        <widget class="QLineEdit" name="txt_telefono"/>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btn_agregar_telefono">
-         <property name="text">
-          <string>+</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
     </layout>
    </item>
    <item>
@@ -210,6 +214,13 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_limpiar">
+       <property name="text">
+        <string>Limpiar</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="btn_baja">
@@ -240,19 +251,6 @@
         <string>Agregar</string>
        </property>
       </widget>
-     </item>
-     <item>
-      <spacer name="hspc_derecha_botones">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
      </item>
     </layout>
    </item>

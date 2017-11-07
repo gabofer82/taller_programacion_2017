@@ -1,26 +1,16 @@
 # -*- coding: utf-8 -*-
-from .agendadiaria import AgendaDiaria
-from .analisis import Analisis
-from .cupo import Cupo
-from .documento import Documento
-from .empleado import Empleado
-from .fichapaciente import FichaPaciente
-from .institucionmedica import InstitucionMedica
-from .laboratorioexterno import LaboratorioExterno
-from .paciente import Paciente
-from .reserva_analisis import ReservaAnalisis
-from .sucursal import Sucursal
-from .tipoanalisis import TipoAnalisis
-from .ubicacion_geografica import UbicacionGeografica
+from .manejadoras import ManejadoraPrincipal, ManejadoraPacientes
 
 
-class Creador(object):
+class Acceder(object):
     """
-    Clase encargada de crear cada uno de los objetos de la capa de negocio.
+    Clase encargada de nuclear el acceso a cada uno de los objetos de la capa 
+    de negocio.
     
     Note:
-        Suministra los métodos necesarios para crear.
-        Debe ser invocada de forma estática.
+        Suministra los métodos necesarios para trabajar con la capa como 
+        fachada pública de ella.
+        Dichos métodos deben ser invocados de forma estática.
         
     Args:
         Ninguno
@@ -29,60 +19,31 @@ class Creador(object):
         Ninguno
     """
 
+    # Pacientes
     @staticmethod
-    def agendadiaria(**kwargs):
-        return AgendaDiaria()
-
-    @staticmethod
-    def analisis(**kwargs):
-        return Analisis()
+    def nuevo_paciente(**kwargs):
+        return ManejadoraPacientes().nuevo_paciente(**kwargs)
 
     @staticmethod
-    def cupo(**kwargs):
-        return Cupo()
+    def actualizar_paciente(**kwargs):
+        return ManejadoraPacientes().actualizar_paciente(**kwargs)
 
     @staticmethod
-    def documento(**kwargs):
-        return Documento()
+    def baja_paciente(**kwargs):
+        return ManejadoraPacientes().baja_paciente(**kwargs)
 
     @staticmethod
-    def empleado(**kwargs):
-        return Empleado()
+    def get_table_model_pacientes(**kwargs):
+        return ManejadoraPacientes().get_modelo_tabla(kwargs["parent"])
 
+    #Ubicaciones geograficas
     @staticmethod
-    def fichapaciente(**kwargs):
-        return FichaPaciente()
-
-    @staticmethod
-    def institucionmedica(**kwargs):
-        return InstitucionMedica()
-
-    @staticmethod
-    def laboratorioexterno(**kwargs):
-        return LaboratorioExterno()
-
-    @staticmethod
-    def paciente(**kwargs):
-        return Paciente()
-
-    @staticmethod
-    def reserva_analisis(**kwargs):
-        return ReservaAnalisis()
-
-    @staticmethod
-    def sucursal(**kwargs):
-        return Sucursal()
-
-    @staticmethod
-    def tipoanalisis(**kwargs):
-        return TipoAnalisis()
-
-    @staticmethod
-    def ubicacion_geografica(**kwargs):
-        return UbicacionGeografica()
+    def get_ubicaciones_geograficas(**kwargs):
+        return ManejadoraPrincipal().get_ubicaciones_geograficas(**kwargs)
 
 
-class Actualizador(object):
+
+class Actualizador(object): # son responsabilidad de cada clase
     """
     Clase encargada de actualizar el estado de los objetos de la capa.
     
@@ -99,7 +60,7 @@ class Actualizador(object):
     pass
 
 
-class Elminador(object):
+class Elminador(object):  # son responsabilidad de cada clase
     """
     Clase encargada de dar baja al estado de los objetos de la capa y eliminar-
     los.

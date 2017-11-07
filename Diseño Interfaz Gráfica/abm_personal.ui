@@ -210,6 +210,16 @@
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="btn_limpiar">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Limpiar</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="btn_baja">
        <property name="enabled">
         <bool>false</bool>
@@ -232,25 +242,12 @@
      <item>
       <widget class="QPushButton" name="btn_agregar">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="text">
         <string>Agregar</string>
        </property>
       </widget>
-     </item>
-     <item>
-      <spacer name="hspc_derecha_botones">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
      </item>
     </layout>
    </item>
