@@ -25,22 +25,21 @@ class PerSucursal(BaseDeDatos):
         :param kwargs: dict 
         :return: dict
         """
+        dataset = []
         if 'pagina' in kwargs:
-            total_filas = self.contar_filas('pacientes')
+            total_filas = self.contar_filas('ubicaciones_geograficas')
             offset = kwargs['pagina'] * 10  #resultados por pagina
-            dataset = None
             if offset < total_filas:  # TODO: ver aca el asunto de paginacion
-                sql = 'SELECT * FROM sucursales LIMIT(10) OFFSET(?) WHERE ' \
-                      'baja=0'
+                sql = 'SELECT * FROM sucursales LIMIT(10) '\
+                      'OFFSET(?)'
                 data = (offset,)
                 dataset = self.obtener(sql, data, True)
-            else:
-                sql = 'SELECT * FROM sucursales WHERE baja=0'
-                dataset = self.obtener(sql, lista=True)
-
-            return dataset
+            dataset = []
         else:
-            return []
+            sql = 'SELECT * FROM sucursales WHERE baja = 0'
+            dataset = self.obtener(sql, lista=True)
+
+        return dataset
 
     def agregar_objeto(self, obj):
         """

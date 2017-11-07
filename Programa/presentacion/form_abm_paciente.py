@@ -226,7 +226,6 @@ class FormPacienteABM(QtGui.QDialog, UIPacienteABM):
         self.btn_actualizar.setEnabled(False)
         self.btn_baja.setEnabled(False)
         self.btn_agregar.setEnabled(True)
-        self.btn_limpiar.setEnabled(False)
         self.obj_paciente = None
         # acciones previas del formulario
         self.conectarEventos()
@@ -376,6 +375,9 @@ class FormPacienteABM(QtGui.QDialog, UIPacienteABM):
             msgBox.exec_()
 
             self.limpiar_campos()
+            self.btn_actualizar.setEnabled(False)
+            self.btn_baja.setEnabled(False)
+            self.btn_agregar.setEnabled(True)
             self.cargar_tabla()
 
     def handlerLimpiarClicked(self):
@@ -510,7 +512,6 @@ class FormPacienteABM(QtGui.QDialog, UIPacienteABM):
         if len(self.txt_numero_documento.text()) < 1:
             flag_valido = False
         if len(self.col_telefonos[0].text()) < 1:
-            # eliminar el widget
             flag_valido = False
         if self.cbox_ciudad.currentIndex() < 0:
             flag_valido = False

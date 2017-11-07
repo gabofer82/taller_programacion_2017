@@ -268,6 +268,9 @@ class FormSucursalABM(QtGui.QDialog, UISucursalABM):
             msgBox.exec_()
 
             self.limpiar_campos()
+            self.btn_actualizar.setEnabled(False)
+            self.btn_baja.setEnabled(False)
+            self.btn_agregar.setEnabled(True)
             self.cargar_tabla()
 
     def handlerLimpiarClicked(self):
