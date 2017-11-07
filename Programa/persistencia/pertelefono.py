@@ -66,9 +66,10 @@ class PerTelefono(BaseDeDatos):
         :param obj: object 
         :return: bool
         """
-        data = (obj_tel.pk, obj_duenio.pk_persona, 0)
+        data = (obj_tel.pk, obj_duenio.pk, 0)
         if isinstance(obj_duenio, Persona):
             sql = 'INSERT INTO telefonos_de_personas VALUES (null, ?, ?, ?)'
+            data = (obj_tel.pk, obj_duenio.pk_persona, 0)
         if isinstance(obj_duenio, Sucursal):
             sql = 'INSERT INTO telefonos_de_sucursales VALUES (null, ?, ?, ?)'
         if isinstance(obj_duenio, LaboratorioExterno):
@@ -92,12 +93,12 @@ class PerTelefono(BaseDeDatos):
             sql = 'SELECT telefonos.id, numero FROM telefonos LEFT JOIN ' \
                   'telefonos_de_sucursales ON telefonos.id = ' \
                   'telefonos_de_sucursales.telefonoId WHERE ' \
-                  'telefonos_de_sucursales.personaId=? AND telefonos.baja=0'
+                  'telefonos_de_sucursales.sucursalId=? AND telefonos.baja=0'
 
         if tipo == "laboratorio":
             sql = 'SELECT telefonos.id, numero FROM telefonos LEFT JOIN ' \
                   'telefonos_de_labs_externos ON telefonos.id = ' \
                   'telefonos_de_labs_externos.telefonoId WHERE ' \
-                  'telefonos_de_labs_externos.personaId=? AND telefonos.baja=0'
+                  'telefonos_de_labs_externos.laboratorioId=? AND telefonos.baja=0'
 
         return self.obtener(sql=sql, data=(pk_duenio,), lista=True)

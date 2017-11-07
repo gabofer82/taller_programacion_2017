@@ -99,7 +99,20 @@ class Creador(object):
 
     @staticmethod
     def sucursal(**kwargs):
-        return Sucursal()
+        col_telefonos = []
+        for tel in kwargs["col_telefonos"]:
+            obj_telefono = Creador.telefono(pk=tel[0], numero=tel[1])
+            col_telefonos.append(obj_telefono)
+        obj_ubicacion_geo = Creador.ubicacion_geografica(
+            pk=kwargs["ubicacion_geo"][0], ciudad=kwargs
+            ["ubicacion_geo"][1], departamento=kwargs["ubicacion_geo"]
+            [2], baja=kwargs["ubicacion_geo"][3])
+        # kwargs["obj_ubicacion_geo"] trae un objeto
+        return Sucursal(pk=kwargs["pk"],
+                        domicilio=kwargs["domicilio"],
+                        col_telefonos=col_telefonos,
+                        obj_ubicacion_geo=obj_ubicacion_geo,
+                        baja=False)
 
     @staticmethod
     def tipoanalisis(**kwargs):

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from .manejadoras import ManejadoraPrincipal, ManejadoraPacientes
+from .manejadoras import ManejadoraPrincipal, ManejadoraPacientes, \
+    ManejadoraSucursales
 
 
 class Acceder(object):
@@ -36,7 +37,24 @@ class Acceder(object):
     def get_table_model_pacientes(**kwargs):
         return ManejadoraPacientes().get_modelo_tabla(kwargs["parent"])
 
-    #Ubicaciones geograficas
+    # Sucursales
+    @staticmethod
+    def nueva_sucursal(**kwargs):
+        return ManejadoraSucursales().nueva_sucursal(**kwargs)
+
+    @staticmethod
+    def actualizar_sucursal(**kwargs):
+        return ManejadoraSucursales().actualizar_sucursal(**kwargs)
+
+    @staticmethod
+    def baja_sucursal(**kwargs):
+        return ManejadoraSucursales().baja_sucursal(**kwargs)
+
+    @staticmethod
+    def get_table_model_sucursales(**kwargs):
+        return ManejadoraSucursales().get_modelo_tabla(kwargs["parent"])
+
+    # Ubicaciones geograficas
     @staticmethod
     def get_ubicaciones_geograficas(**kwargs):
         return ManejadoraPrincipal().get_ubicaciones_geograficas(**kwargs)

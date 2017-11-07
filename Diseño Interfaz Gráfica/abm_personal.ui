@@ -22,50 +22,13 @@
      <item row="1" column="1">
       <widget class="QLineEdit" name="txt_apellidos"/>
      </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="txt_numero_documento"/>
+     </item>
      <item row="1" column="0">
       <widget class="QLabel" name="lbl_apellidos">
        <property name="text">
-        <string>Apellidos</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="txt_nombres"/>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="lbl_numero_documento">
-       <property name="text">
-        <string>Número de documento</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLineEdit" name="txt_domicilio"/>
-     </item>
-     <item row="1" column="2">
-      <spacer name="hspc_apellidos_derecha">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="lbl_domicilio">
-       <property name="text">
-        <string>Domicilio</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="lbl_ciudad">
-       <property name="text">
-        <string>Ciudad</string>
+        <string>Apellidos *</string>
        </property>
       </widget>
      </item>
@@ -82,83 +45,80 @@
        </property>
       </spacer>
      </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="txt_numero_documento"/>
-     </item>
-     <item row="3" column="1">
-      <layout class="QHBoxLayout" name="hlyt_btn_agregar_telefono">
-       <item>
-        <widget class="QLineEdit" name="txt_telefono"/>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btn_agregar_telefono">
-         <property name="text">
-          <string>+</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
      <item row="0" column="0">
       <widget class="QLabel" name="lbl_nombres">
        <property name="text">
-        <string>Nombres</string>
+        <string>Nombres *</string>
        </property>
       </widget>
      </item>
-     <item row="5" column="1">
-      <widget class="QComboBox" name="cbox_ciudad"/>
+     <item row="3" column="1">
+      <layout class="QVBoxLayout" name="vlyt_telefonos">
+       <item>
+        <layout class="QHBoxLayout" name="hlyt_telefono">
+         <item>
+          <widget class="QLineEdit" name="txt_telefono"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btn_agregar_telefono">
+           <property name="text">
+            <string>+</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="lbl_telefono">
+     <item row="2" column="0">
+      <widget class="QLabel" name="lbl_numero_documento">
        <property name="text">
-        <string>Teléfono</string>
+        <string>Número de documento *</string>
        </property>
       </widget>
      </item>
-     <item row="6" column="0">
-      <widget class="QLabel" name="lbl_sucursal">
+     <item row="1" column="2">
+      <spacer name="hspc_apellidos_derecha">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="txt_domicilio"/>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="lbl_ciudad">
        <property name="text">
-        <string>Sucursal</string>
+        <string>Ciudad *</string>
        </property>
       </widget>
      </item>
      <item row="6" column="1">
       <widget class="QComboBox" name="cbox_sucursal"/>
      </item>
-     <item row="3" column="2" rowspan="2">
-      <widget class="QGroupBox" name="gbox_tipo_documento">
-       <property name="title">
-        <string>Tipo de documento</string>
+     <item row="3" column="0">
+      <widget class="QLabel" name="lbl_telefono">
+       <property name="text">
+        <string>Teléfono * (1)</string>
        </property>
-       <layout class="QHBoxLayout" name="hlyt_tipo_documento">
-        <item>
-         <widget class="QRadioButton" name="rbtn_pasaporte">
-          <property name="layoutDirection">
-           <enum>Qt::RightToLeft</enum>
-          </property>
-          <property name="text">
-           <string>Pasapor&amp;te</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="rbtn_cedula">
-          <property name="layoutDirection">
-           <enum>Qt::RightToLeft</enum>
-          </property>
-          <property name="text">
-           <string>C&amp;édula</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-       </layout>
-       <zorder>rbtn_cedula</zorder>
-       <zorder>rbtn_pasaporte</zorder>
       </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="lbl_domicilio">
+       <property name="text">
+        <string>Domicilio</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QComboBox" name="cbox_ciudad"/>
      </item>
      <item row="5" column="2" rowspan="2">
       <widget class="QGroupBox" name="gbox_categoria">
@@ -190,6 +150,50 @@
          </widget>
         </item>
        </layout>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QLabel" name="lbl_sucursal">
+       <property name="text">
+        <string>Sucursal *</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="txt_nombres"/>
+     </item>
+     <item row="3" column="2" rowspan="2">
+      <widget class="QGroupBox" name="gbox_tipo_documento">
+       <property name="title">
+        <string>Tipo de documento</string>
+       </property>
+       <layout class="QHBoxLayout" name="hlyt_tipo_documento">
+        <item>
+         <widget class="QRadioButton" name="rbtn_pasaporte">
+          <property name="layoutDirection">
+           <enum>Qt::RightToLeft</enum>
+          </property>
+          <property name="text">
+           <string>Pasapor&amp;te</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="rbtn_cedula">
+          <property name="layoutDirection">
+           <enum>Qt::RightToLeft</enum>
+          </property>
+          <property name="text">
+           <string>Céd&amp;ula</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+       <zorder>rbtn_cedula</zorder>
+       <zorder>rbtn_pasaporte</zorder>
       </widget>
      </item>
     </layout>
@@ -252,6 +256,13 @@
     </layout>
    </item>
    <item>
+    <widget class="QLabel" name="lbl_visualizar_ficha">
+     <property name="text">
+      <string>Doble click para visualizar ficha</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QTableView" name="table_personal"/>
    </item>
    <item>
@@ -268,6 +279,7 @@
   <zorder>btnbox_ok_cancel</zorder>
   <zorder>table_personal</zorder>
   <zorder></zorder>
+  <zorder>lbl_visualizar_ficha</zorder>
  </widget>
  <resources/>
  <connections>

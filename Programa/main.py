@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-import sys, time
+import sys
+import time
 
 from PySide import QtGui, QtCore
 
 from presentacion.form_abm_paciente import FormPacienteABM
+from presentacion.form_abm_sucursal import FormSucursalABM
 
 
 if __name__ == "__main__":
@@ -36,7 +38,8 @@ if __name__ == "__main__":
 
     # Simulate something that takes time
     time.sleep(1)
-    form = FormPacienteABM()
+    # form = FormPacienteABM()
+    form = FormSucursalABM()
     form.show()
     splash.close()
 

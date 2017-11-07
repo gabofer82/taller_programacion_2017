@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from .basededatos import BaseDeDatos
-from .perpersona import PerPersona
 
 
 class PerPaciente(BaseDeDatos):

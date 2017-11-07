@@ -1,4 +1,4 @@
-from negocio.api import Creador
+# -*- coding: utf-8 -*-
 from .basededatos import BaseDeDatos
 
 
@@ -14,8 +14,7 @@ class PerSucursal(BaseDeDatos):
             id_ = (id_,)
             sql = 'SELECT * FROM sucursales WHERE id=?'
             fila = self.obtener(sql, id_)
-            return Creador.sucursal(id_=fila[0], domicilio=fila[1],
-                                    ubicacion_geo_id=fila[2])
+            return fila
         else:
             print 'El parámetro debe ser mayor o igual a 0.'
             return None
@@ -27,16 +26,21 @@ class PerSucursal(BaseDeDatos):
         :return: dict
         """
         if 'pagina' in kwargs:
-            total_filas = self.contar_filas('sucursales')
+            total_filas = self.contar_filas('pacientes')
             offset = kwargs['pagina'] * 10  #resultados por pagina
+            dataset = None
             if offset < total_filas:  # TODO: ver aca el asunto de paginacion
-                sql = 'SELECT * FROM sucursales LIMIT(10) OFFSET(?)'
+                sql = 'SELECT * FROM sucursales LIMIT(10) OFFSET(?) WHERE ' \
+                      'baja=0'
                 data = (offset,)
-                lista_de_filas = self.obtener(sql, data, True)
-                return lista_de_filas
-            return None
+                dataset = self.obtener(sql, data, True)
+            else:
+                sql = 'SELECT * FROM sucursales WHERE baja=0'
+                dataset = self.obtener(sql, lista=True)
+
+            return dataset
         else:
-            return None
+            return []
 
     def agregar_objeto(self, obj):
         """
@@ -44,10 +48,9 @@ class PerSucursal(BaseDeDatos):
         :param obj: object
         :return: object
         """
-        sql = 'INSERT INTO sucursales VALUES (null, ?, ?)'
-        id_ = self.salvar(sql, (obj.domicilio, obj.obj_ubigeo.id_,))
-        obj.id_ = id_
-        return obj
+        sql = 'INSERT INTO sucursales VALUES (null, ?, ?, 0)'
+        pk = self.salvar(sql, (obj.domicilio, obj.obj_ubicacion_geo.pk,))
+        return pk
 
 
     def actualizar_objeto(self, obj):
@@ -59,8 +62,8 @@ class PerSucursal(BaseDeDatos):
         """
         sql = 'UPDATE sucursales SET domicilio = ?, ubicacionGeoId = ? WHERE \
               id = ?'
-        return self.actualizar(sql, (obj.domicilio, obj.obj_ubigeo.id_,
-                                    obj.id_))
+        return self.actualizar(sql, (obj.domicilio, obj.obj_ubicacion_geo.pk,
+                                    obj.pk))
 
     def baja_objeto(self, obj):
         """
@@ -70,4 +73,4 @@ class PerSucursal(BaseDeDatos):
         :return: bool
         """
         sql = 'UPDATE sucursales SET baja = ? WHERE id = ?'
-        return self.actualizar(sql, (1, obj.id_))
+        return self.actualizar(sql, (1, obj.pk))

@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 from fabrica import Creador
 from paciente import Paciente, ModeloTablaPacientes
+from sucursal import Sucursal, ModeloTablaSucursales
 from documento import Documento
 from persistencia.perubicaciongeografica import PerUbicacion
 from persistencia.perpaciente import PerPaciente
 from persistencia.perpersona import PerPersona
 from persistencia.perdocumento import PerDocumento
 from persistencia.pertelefono import PerTelefono
+from persistencia.persucursal import PerSucursal
 
 
 class ManejadoraPrincipal(object):
@@ -110,5 +112,68 @@ class ManejadoraPacientes(object):
         dataset = self.get_pacientes(pagina=1)
         if dataset:
             return ModeloTablaPacientes(parent, dataset)
+        else:
+            return None
+
+
+class ManejadoraSucursales(object):
+    def nueva_sucursal(self, **kwargs):
+        col_telefonos = []
+        for tel in kwargs["col_telefonos"]:
+            col_telefonos.append((None, tel))
+        obj_s = Creador.sucursal(pk=None, domicilio=kwargs["domicilio"],
+                                 ubicacion_geo=(kwargs["obj_ubicacion_geo"].pk,
+                                                kwargs["obj_ubicacion_geo"].ciudad,
+                                                kwargs["obj_ubicacion_geo"].departamento,
+                                                kwargs["obj_ubicacion_geo"].baja),
+                                 col_telefonos=col_telefonos)
+        obj_s.salvar()
+        return obj_s
+
+
+    def actualizar_sucursal(self, **kwargs):
+        obj_s = kwargs["obj_sucursal"]
+        obj_s.actualizar()
+        return obj_s
+
+    def baja_sucursal(self, **kwargs):
+        obj_s = kwargs["obj_sucursal"]
+        obj_s.dar_baja()
+        return obj_s
+
+    def get_sucursal(self, pk):
+        data_pac = PerPaciente().obtener_uno(pk)
+        data_per = PerPersona().obtener_uno(data_pac[1])
+        data_ubigeo = PerUbicacion().obtener_uno(data_per[5])
+        data_doc = PerDocumento().obtener_uno(data_per[4])
+        data_tels = PerTelefono().obtener_relacionados(data_per[0], "persona")
+        return Creador.paciente(pk=data_pac[0], pk_persona=data_pac[1],
+                         activo=data_pac[2], penalizado=data_pac[3],
+                         ficha_paciente_id=data_pac[4], baja=data_pac[5],
+                         nombres=data_per[1], apellidos=data_per[2],
+                         domicilio=data_per[3],
+                         documento=data_doc,
+                         ubicacion_geo=data_ubigeo,
+                         col_telefonos=data_tels)
+
+    def get_sucursales(self, **kwargs):
+        dataset = PerSucursal().obtener_listado(**kwargs)
+        col_sucursales = {}
+        if not dataset:
+            return col_sucursales
+        for data_suc in dataset:
+            data_ubigeo = PerUbicacion().obtener_uno(data_suc[2])
+            data_tels = PerTelefono().obtener_relacionados(data_suc[0],
+                                                         "sucursal")
+            obj = Creador.sucursal(pk=data_suc[0], domicilio=data_suc[1],
+                                   ubicacion_geo=data_ubigeo,
+                                   col_telefonos=data_tels)
+            col_sucursales[obj.pk] = obj
+        return col_sucursales
+
+    def get_modelo_tabla(self, parent):
+        dataset = self.get_sucursales(pagina=1)
+        if dataset:
+            return ModeloTablaSucursales(parent, dataset)
         else:
             return None
