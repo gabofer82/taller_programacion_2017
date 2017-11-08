@@ -27,7 +27,7 @@ class PerSucursal(BaseDeDatos):
         """
         dataset = []
         if 'pagina' in kwargs:
-            total_filas = self.contar_filas('ubicaciones_geograficas')
+            total_filas = self.contar_filas('sucursales')
             offset = kwargs['pagina'] * 10  #resultados por pagina
             if offset < total_filas:  # TODO: ver aca el asunto de paginacion
                 sql = 'SELECT * FROM sucursales LIMIT(10) '\

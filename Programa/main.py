@@ -7,6 +7,7 @@ from PySide import QtGui, QtCore
 from presentacion.form_abm_paciente import FormPacienteABM
 from presentacion.form_abm_sucursal import FormSucursalABM
 from presentacion.form_abm_personal import FormPersonalABM
+from presentacion.form_reserva_examen import FormReservaExamen
 
 
 if __name__ == "__main__":
@@ -29,7 +30,7 @@ if __name__ == "__main__":
     progressBar.setStyleSheet(css)
     # splash.setMask(splash_pix.mask())
 
-    # splash.show()
+    splash.show()
 
     for i in range(1, 11):
         progressBar.setValue(i)
@@ -41,7 +42,8 @@ if __name__ == "__main__":
     time.sleep(1)
     # form = FormPacienteABM()
     # form = FormSucursalABM()
-    form = FormPersonalABM()
+    # form = FormPersonalABM()
+    form = FormReservaExamen()
     form.show()
     splash.close()
 

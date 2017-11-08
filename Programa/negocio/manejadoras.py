@@ -11,6 +11,7 @@ from persistencia.perdocumento import PerDocumento
 from persistencia.pertelefono import PerTelefono
 from persistencia.persucursal import PerSucursal
 from persistencia.perempleado import PerEmpleado
+from persistencia.perinstitucionmedica import PerInstitucionMedica
 
 
 class ManejadoraPrincipal(object):
@@ -36,6 +37,28 @@ class ManejadoraPrincipal(object):
                                                          departamento=fila[2],
                                                          baja=[3])
         return obj_ubicacion
+
+    def get_instituciones_medicas(self):
+        dataset = PerInstitucionMedica().obtener_listado(pagina=1)
+        col_instituciones = {}
+        for fila in dataset:
+            data_ubigeo = PerUbicacion().obtener_uno(fila[3])
+            obj = Creador.institucionmedica(pk=fila[0], nombre=fila[1],
+                                             domicilio=fila[2],
+                                            obj_ubicacion_geo=data_ubigeo)
+            col_instituciones[obj.pk] = obj
+
+        return col_instituciones
+
+    def get_institucion_medica(self, pk):
+        fila = PerInstitucionMedica().obtener_uno(pk)
+        obj_inst = None
+        if fila:
+            data_ubigeo = PerUbicacion().obtener_uno(fila[3])
+            obj_inst = Creador.institucionmedica(pk=fila[0], nombre=fila[1],
+                                             domicilio=fila[2],
+                                            obj_ubicacion_geo=fila[3])
+        return obj_inst
 
 
 class ManejadoraPersonal(object):
@@ -257,7 +280,7 @@ class ManejadoraSucursales(object):
         return col_sucursales
 
     def get_modelo_tabla(self, parent):
-        dataset = self.get_sucursales(pagina=1)
+        dataset = self.get_sucursales()
         if dataset:
             return ModeloTablaSucursales(parent, dataset)
         else:

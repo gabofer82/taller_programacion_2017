@@ -80,6 +80,11 @@ class Acceder(object):
     def get_ubicaciones_geograficas(**kwargs):
         return ManejadoraPrincipal().get_ubicaciones_geograficas(**kwargs)
 
+    # Instituciones medicas
+    @staticmethod
+    def get_instituciones_medicas(**kwargs):
+        return ManejadoraPrincipal().get_instituciones_medicas(**kwargs)
+
 
 
 class Actualizador(object): # son responsabilidad de cada clase

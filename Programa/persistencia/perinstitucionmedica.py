@@ -1,4 +1,4 @@
-from negocio.api import Creador
+# -*- coding: utf-8 -*-
 from .basededatos import BaseDeDatos
 
 
@@ -13,8 +13,7 @@ class PerInstitucionMedica(BaseDeDatos):
         if id_ >= 0:
             id_ = (id_,)
             sql = 'SELECT * FROM instituciones_medicas WHERE id=?'
-            fila = self.obtener(sql, id_)
-            return Creador.sucursal(id_=fila[0], nombre=fila[1], baja=fila[2])
+            return self.obtener(sql, id_)
         else:
             print 'El parámetro debe ser mayor o igual a 0.'
             return None
@@ -26,16 +25,21 @@ class PerInstitucionMedica(BaseDeDatos):
         :return: dict
         """
         if 'pagina' in kwargs:
-            total_filas = self.contar_filas('instituciones_medicas')
+            total_filas = self.contar_filas('pacientes')
             offset = kwargs['pagina'] * 10  #resultados por pagina
+            dataset = None
             if offset < total_filas:  # TODO: ver aca el asunto de paginacion
-                sql = 'SELECT * FROM instituciones_medicas LIMIT(10) OFFSET(?)'
+                sql = 'SELECT * FROM instituciones_medicas LIMIT(10) OFFSET(?) WHERE ' \
+                      'baja=0'
                 data = (offset,)
-                lista_de_filas = self.obtener(sql, data, True)
-                return lista_de_filas
-            return None
+                dataset = self.obtener(sql, data, True)
+            else:
+                sql = 'SELECT * FROM instituciones_medicas WHERE baja=0'
+                dataset = self.obtener(sql, lista=True)
+
+            return dataset
         else:
-            return None
+            return []
 
     def agregar_objeto(self, obj):
         """

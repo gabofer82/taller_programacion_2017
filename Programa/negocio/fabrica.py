@@ -57,7 +57,14 @@ class Creador(object):
 
     @staticmethod
     def institucionmedica(**kwargs):
-        return InstitucionMedica()
+        obj_ubicacion_geo = Creador.ubicacion_geografica(
+            pk=kwargs["obj_ubicacion_geo"][0],
+            ciudad=kwargs["obj_ubicacion_geo"][1],
+            departamento=kwargs["obj_ubicacion_geo"][2],
+            baja=kwargs["obj_ubicacion_geo"][3])
+        return InstitucionMedica(pk=kwargs["pk"], nombre=kwargs["nombre"],
+                                 direccion=kwargs["domicilio"],
+                                 obj_ubicacion_geo=obj_ubicacion_geo)
 
     @staticmethod
     def laboratorioexterno(**kwargs):
